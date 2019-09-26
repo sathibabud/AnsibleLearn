@@ -1,0 +1,11 @@
+---
+- hosts: linux
+  tasks:
+   - name: create file
+     file:
+      path: "{{ item.path }}"
+      state: "{{ item.state }}"
+     loop:
+      - { path: '/tmp/raghu' , state: 'touch' }
+      - { path: '/opt/raghu' , state: 'touch' }
+

@@ -1,0 +1,13 @@
+---
+- hosts: linux
+  vars_files:
+   - Var.yml
+  tasks:
+   - name: Create file
+     file:
+      path: "{{ path }}"
+      state: "{{ state }}"
+     register: output
+   - debug:
+      var: output
+      var: output.changed

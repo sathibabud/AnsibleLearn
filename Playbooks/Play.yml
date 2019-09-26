@@ -1,0 +1,10 @@
+---
+- hosts: linux
+  vars:
+   path: /tmp/sathibabu_vars
+   state: touch
+  tasks:
+   - name: Create file
+     file:
+      path: "{{ path }}"
+      state: "{{ state }}"

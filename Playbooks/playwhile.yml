@@ -1,0 +1,14 @@
+---
+- hosts: linux
+  vars:
+   path: /tmp/sathibabu
+   state: touch
+  tasks:
+   - name: create file
+     file:
+      path: "{{ item.path }}"
+      state: "{{ item.state }}"
+     loop:
+      - { path: '/tmp/locl' , state: 'touch' }
+      - { path: '/opt/sat' , state: 'touch' }
+     when: item.path == '/tmp/locl'

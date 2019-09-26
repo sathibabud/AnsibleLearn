@@ -1,0 +1,14 @@
+---
+- hosts: linux
+  vars_files:
+   - Var.yml
+  tasks:
+   - name: Create file
+     file:
+      path: "{{ path }}"
+      state: "{{ state }}"
+     notify:
+      - restart apache
+  handlers:
+   - name: restart apache
+     service: name=httpd state=started
