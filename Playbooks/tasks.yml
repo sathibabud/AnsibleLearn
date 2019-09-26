@@ -1,0 +1,10 @@
+---
+ - name: Install windows feature
+   win_feature:
+    name: "RemoteAccess"
+    state: present
+
+ - name: started stopeed restared 
+   win_service:
+    name: "spooler"
+    state: "restarted"

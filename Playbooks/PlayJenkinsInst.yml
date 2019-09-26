@@ -1,0 +1,23 @@
+---
+- hosts: web
+  roles:
+   - role: ansiblebit.oracle-java
+     oracle_java_set_as_default: yes
+   tasks:
+   - name: Ensure Jenikins Repository is Installed
+     yum_repository:
+      name: jenikins
+      state: present
+      descriptoin: Official Jenkins Yum Repo
+      baseurl: http://pkg.jenkins.io/redhat
+      gpgkey: https://jenkins-ci.org/redhad/jenkins-ci.org.key
+      gpgcheck: yes
+      enabled: yes
+
+   - name: Ensure jenkins installed
+     yum:
+      name: jenkins
+      update_cache: yes
+      state: present
+   - name: Enable and Start the Jenkins Service
+

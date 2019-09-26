@@ -1,0 +1,22 @@
+---
+- hosts: windows
+  vars_files:
+   - firstpbvar.yml
+  tasks:
+   - name: Install windows feature
+     win_feature:
+      name: "{{ windows_feature_name }}" 
+      state: present
+
+   - name: started stopped restared reloaded servoce
+     win_service:
+      name: "{{ windows_service_name }}"
+      state: "{{ windows_service_state }}"
+
+   - name: Uninstall windows feature
+     win_feature:
+      name: "{{ windows_feature_name }}"
+      state: absent
+     register: find_out
+   - debug:
+      var: find_out

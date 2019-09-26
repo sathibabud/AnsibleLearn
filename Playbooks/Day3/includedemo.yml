@@ -1,0 +1,9 @@
+---
+
+- include: PlayEmbed.yml
+
+- hosts: windows
+  tasks:
+   - include: tasks.yml
+
+

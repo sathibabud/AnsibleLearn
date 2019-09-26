@@ -1,0 +1,26 @@
+---
+- hosts: windows
+  vars_files:
+   - firstpbvar.yml
+  tasks:
+   - name: Install windows feature
+     win_feature:
+      name: "{{ windows_feature_name }}" 
+      state: present
+     when: ansible_distribution == "Microsoft Windows Server 2012 R2 Standard"
+
+   - name: started stopped restared reloaded servoce
+     win_service:
+      name: "{{ windows_service_name }}"
+      state: "{{ windows_service_state }}"
+     when: ansible_distribution == "centos"
+
+   - name: Uninstall windows feature
+     win_feature:
+      name: "{{ windows_feature_name }}"
+      state: absent
+     when: ansible_distribution == "redhat"
+
+     register: find_out
+   - debug:
+      var: find_out
